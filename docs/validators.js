@@ -46,3 +46,12 @@ export function validarEmail(email) {
     if (typeof email !== "string" || email.length === 0) return false;
     return REGEX_EMAIL.test(email.trim());         // .trim() novo
 }
+export function validarTelefone(telefone) {
+    if (typeof telefone !== "string") return false;
+    const apenasDigitos = telefone.trim().replace(/[()\-\s]/g, "");
+    if (apenasDigitos.length !== 11 || !/^\d{11}$/.test(apenasDigitos)) return false;
+    const ddd = parseInt(apenasDigitos.slice(0, 2), 10);
+    if (ddd < 11 || ddd > 99) return false;
+    return apenasDigitos[2] === "9";
+}
+
