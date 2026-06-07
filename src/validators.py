@@ -59,3 +59,17 @@ def validar_cnpj(cnpj: str | None) -> bool:
     primeiro = _calcular_dv_cnpj(apenas_digitos[:12], pesos_primeiro)
     segundo = _calcular_dv_cnpj(apenas_digitos[:13], pesos_segundo)
     return apenas_digitos[12] == str(primeiro) and apenas_digitos[13] == str(segundo)
+
+
+def validar_cpf(cpf: str | None) -> bool:
+    if not isinstance(cpf, str):
+        return False
+    cpf = cpf.strip()                              # <-- NOVO
+    apenas_digitos = re.sub(r"[.\-\s]", "", cpf)
+    # ... resto inalterado
+
+
+def validar_email(email: str | None) -> bool:
+if not isinstance(email, str) or not email:
+    return False
+return _REGEX_EMAIL.match(email.strip()) is not None   # .strip() novo
